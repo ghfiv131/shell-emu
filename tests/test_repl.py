@@ -3,6 +3,7 @@
 import unittest
 
 from tests.helpers import feeder, make_shell
+from shell_emulator.vfs import Vfs
 
 
 class CommandsTest(unittest.TestCase):
@@ -10,7 +11,7 @@ class CommandsTest(unittest.TestCase):
 
     def test_prompt_contains_vfs_name(self):
         """Приглашение содержит имя VFS."""
-        shell, _, _ = make_shell(vfs_name="myfs")
+        shell, _, _ = make_shell(vfs=Vfs("myfs"))
         self.assertIn("myfs", shell.prompt())
 
     def test_ls_stub(self):

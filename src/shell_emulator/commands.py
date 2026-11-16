@@ -5,7 +5,10 @@
 :class:`CommandError` при ошибке.
 """
 
+from shell_emulator.vfs import VfsDir, VfsError, tree_lines
+
 MAX_EXIT_ARGS = 1
+MAX_TREE_ARGS = 1
 
 
 class CommandError(Exception):
@@ -56,8 +59,47 @@ def cmd_exit(shell, args):
     raise ExitRequest(code)
 
 
+def cmd_vfs_info(shell, args):
+    """Служебная команда ``vfs-info``: сведения о загруженной VFS.
+
+    :raises CommandError: если переданы аргументы.
+    """
+    if args:
+        raise CommandError("too many arguments")
+    vfs = shell.vfs
+    dirs, files, size = vfs.stats()
+    source = vfs.source or "(in-memory, empty)"
+    return "\n".join([
+        f"name:        {vfs.name}",
+        f"source:      {source}",
+        f"directories: {dirs}",
+        f"files:       {files}",
+        f"size:        {size} bytes",
+    ])
+
+
+def cmd_vfs_tree(shell, args):
+    """Служебная команда ``vfs-tree [path]``: дерево каталога VFS.
+
+    :raises CommandError: если аргументов больше одного, путь не
+        существует или не является каталогом.
+    """
+    if len(args) > MAX_TREE_ARGS:
+        raise CommandError("too many arguments")
+    path = args[0] if args else shell.cwd
+    try:
+        full_path, node = shell.vfs.resolve(path, shell.cwd)
+    except VfsError as exc:
+        raise CommandError(str(exc)) from None
+    if not isinstance(node, VfsDir):
+        raise CommandError(f"{path}: Not a directory")
+    return "\n".join([full_path] + tree_lines(node))
+
+
 COMMANDS = {
     "ls": cmd_ls,
     "cd": cmd_cd,
     "exit": cmd_exit,
+    "vfs-info": cmd_vfs_info,
+    "vfs-tree": cmd_vfs_tree,
 }

@@ -1,0 +1,10 @@
+{
+  "root": {
+    "type": "dir",
+    "children": {
+      "link": {
+        "type": "symlink"
+      }
+    }
+  }
+}

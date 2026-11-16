@@ -1,0 +1,11 @@
+{
+  "root": {
+    "type": "dir",
+    "children": {
+      "a/b": {
+        "type": "file",
+        "content": "x"
+      }
+    }
+  }
+}

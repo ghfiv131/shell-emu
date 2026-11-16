@@ -1,11 +1,11 @@
 """Параметры командной строки эмулятора."""
 
 import argparse
-import os
 from dataclasses import dataclass
 from typing import Optional
 
 from shell_emulator.shell import DEFAULT_VFS_NAME
+from shell_emulator.vfs import default_name
 
 
 @dataclass
@@ -21,11 +21,13 @@ class Config:
 
     @property
     def vfs_name(self):
-        """Имя VFS: имя файла без расширения либо имя по умолчанию."""
+        """Имя VFS по пути: имя файла без расширения или имя по умолчанию.
+
+        Поле ``name`` в JSON-файле VFS имеет приоритет над этим именем.
+        """
         if not self.vfs_path:
             return DEFAULT_VFS_NAME
-        base = os.path.basename(os.path.normpath(self.vfs_path))
-        return os.path.splitext(base)[0] or DEFAULT_VFS_NAME
+        return default_name(self.vfs_path) or DEFAULT_VFS_NAME
 
     def debug_lines(self):
         """Вернуть строки отладочного вывода всех параметров."""

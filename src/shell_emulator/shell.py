@@ -4,6 +4,7 @@ import sys
 
 from shell_emulator.commands import COMMANDS, CommandError, ExitRequest
 from shell_emulator.parser import parse
+from shell_emulator.vfs import Vfs
 
 DEFAULT_VFS_NAME = "vfs"
 SHELL_NAME = "emulator"
@@ -12,17 +13,22 @@ SHELL_NAME = "emulator"
 class Shell:
     """Состояние сеанса эмулятора и выполнение команд."""
 
-    def __init__(self, vfs_name=DEFAULT_VFS_NAME, out=None, err=None):
+    def __init__(self, vfs=None, out=None, err=None):
         """Создать сеанс.
 
-        :param vfs_name: имя VFS, отображаемое в приглашении к вводу.
+        :param vfs: загруженная VFS (по умолчанию пустая VFS в памяти).
         :param out: поток для обычного вывода (по умолчанию stdout).
         :param err: поток для сообщений об ошибках (по умолчанию stderr).
         """
-        self.vfs_name = vfs_name
+        self.vfs = vfs if vfs is not None else Vfs(DEFAULT_VFS_NAME)
         self.cwd = "/"
         self.out = out if out is not None else sys.stdout
         self.err = err if err is not None else sys.stderr
+
+    @property
+    def vfs_name(self):
+        """Имя текущей VFS."""
+        return self.vfs.name
 
     def prompt(self):
         """Вернуть приглашение к вводу, содержащее имя VFS."""

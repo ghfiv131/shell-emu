@@ -1,0 +1,17 @@
+{
+  "root": {
+    "type": "dir",
+    "children": {
+      "bin": {
+        "type": "dir",
+        "children": {
+          "tool": {
+            "type": "file",
+            "encoding": "base64",
+            "content": "@@not base64@@"
+          }
+        }
+      }
+    }
+  }
+}

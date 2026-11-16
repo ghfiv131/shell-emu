@@ -4,5 +4,5 @@
 
 run "справка" --help
 run "у --vfs нет значения" --vfs
-run "у --script нет значения" --vfs /tmp/a.json --script
-run "неизвестный параметр" --vfs /tmp/a.json --unknown
+run "у --script нет значения" --vfs "$ROOT/vfs/minimal.json" --script
+run "неизвестный параметр" --vfs "$ROOT/vfs/minimal.json" --unknown

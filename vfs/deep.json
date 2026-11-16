@@ -1,0 +1,90 @@
+{
+  "name": "deep",
+  "root": {
+    "type": "dir",
+    "children": {
+      "etc": {
+        "type": "dir",
+        "children": {
+          "hostname": {
+            "type": "file",
+            "content": "emulator\n"
+          },
+          "motd": {
+            "type": "file",
+            "content": "Welcome!\n"
+          }
+        }
+      },
+      "home": {
+        "type": "dir",
+        "children": {
+          "user": {
+            "type": "dir",
+            "children": {
+              "documents": {
+                "type": "dir",
+                "children": {
+                  "projects": {
+                    "type": "dir",
+                    "children": {
+                      "shell": {
+                        "type": "dir",
+                        "children": {
+                          "main.py": {
+                            "type": "file",
+                            "content": "print('hello')\n"
+                          },
+                          "README.md": {
+                            "type": "file",
+                            "content": "# shell\n"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "todo.txt": {
+                    "type": "file",
+                    "content": "1. stage 3\n2. stage 4\n"
+                  }
+                }
+              },
+              "pictures": {
+                "type": "dir",
+                "children": {
+                  "pixel.png": {
+                    "type": "file",
+                    "encoding": "base64",
+                    "content": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                  }
+                }
+              },
+              ".profile": {
+                "type": "file",
+                "content": "export PATH=/bin\n"
+              }
+            }
+          }
+        }
+      },
+      "tmp": {
+        "type": "dir",
+        "children": {}
+      },
+      "var": {
+        "type": "dir",
+        "children": {
+          "log": {
+            "type": "dir",
+            "children": {
+              "syslog": {
+                "type": "file",
+                "content": "2026-11-01 event 1\n2026-11-02 event 2\n2026-11-03 event 3\n2026-11-04 event 4\n2026-11-05 event 5\n2026-11-06 event 6\n2026-11-07 event 7\n2026-11-08 event 8\n2026-11-09 event 9\n"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
