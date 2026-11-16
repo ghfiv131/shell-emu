@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Виртуальные окружения
+.venv/
+venv/
+
+# Артефакты сборки
+build/
+dist/
+
+# Архивы и бинарные файлы
+*.zip
+*.tar.gz
+*.exe
+
+# Настройки редакторов
+.idea/
+.vscode/
+*.swp
+.DS_Store
