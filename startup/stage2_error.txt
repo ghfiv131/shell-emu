@@ -1,0 +1,5 @@
+# Стартовый скрипт этапа 2: ошибка на строке 4 останавливает скрипт.
+ls -a
+cd /tmp
+unknown_command arg
+ls this-line-is-never-executed

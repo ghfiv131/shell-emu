@@ -1,0 +1,4 @@
+# Ошибка в аргументах команды exit тоже останавливает скрипт.
+cd /home
+exit not-a-number
+ls never-executed
